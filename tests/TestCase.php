@@ -1,8 +1,9 @@
 <?php 
 
-namespace Leandreaci\Tests;
+namespace RbdevSys\Tests;
 
-abstract class TestCase extends \PHPUnit\Framework\TestCase {
+use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+
+abstract class TestCase extends BaseTestCase {
 	
 }
-

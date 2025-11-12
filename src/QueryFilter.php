@@ -1,19 +1,14 @@
 <?php
-/**
- * Created by: leandro
- * Datetime: 13/09/16 10:18
- */
 
-namespace Leandreaci\Filterable;
+namespace RbdevSys\Filterable;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 abstract class QueryFilter
 {
-
-    protected $request;
-    protected $builder;
+    protected Request $request;
+    protected Builder $builder;
 
     /**
      * QueryFilter constructor.
@@ -27,7 +22,7 @@ abstract class QueryFilter
     /**
      *
      */
-    public function filters()
+    public function filters(): array
     {
         return $this->request->all();
     }
@@ -40,19 +35,16 @@ abstract class QueryFilter
     {
         $this->builder = $builder;
 
-        foreach ($this->filters() as $name => $value)
-        {
-
-            if( $this->invalid($name, $value) )
-            {
+        foreach ($this->filters() as $name => $value) {
+            if ($this->invalid($name, $value)) {
                 continue;
             }
 
-            if (! is_null($value) ) {
+            if (!is_null($value) ) {
                 $this->$name($value);
-            } else {
-                $this->$name();
+                continue;
             }
+            $this->$name();
         }
 
         return $this->builder;
@@ -63,25 +55,24 @@ abstract class QueryFilter
      * @param $value
      * @return bool
      */
-    private function invalid($name, $value)
+    private function invalid($name, $value): bool
     {
-        return ! method_exists($this, $name) ||
-            is_null($value) ||
-            $value === '' ||
-        $this->isValidArray($value);
+        return
+            !method_exists($this, $name)
+            || is_null($value)
+            || $value === ''
+            || $this->isValidArray($value);
     }
 
     /**
      * @param $array
      * @return bool
      */
-    private function isValidArray($array)
+    private function isValidArray($array): bool
     {
-        if(is_array($array))
-        {
-            return strlen(implode($array)) == 0;
+        if (is_array($array)) {
+            return implode($array) === '';
         }
-
         return false;
     }
 }

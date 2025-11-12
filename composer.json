@@ -1,30 +1,29 @@
 {
-    "name": "leandreaci/filterable",
+    "name": "renatobalbino/laravel-filterable",
     "description": "Filter package to Laravel/Lumen",
     "type": "package",
-    "authors": [
-        {
-            "name": "Leandro Andreaci",
-            "email": "leandroandreaci@hotmail.com"
-        }
-    ],
+    "license": "MIT",
     "require": {
-        "php": "^7.3|^8.0",
-        "illuminate/database": ">8.0",
-        "illuminate/http": ">8.0"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^9.5.10"
+        "php": ">=8.2",
+        "laravel/framework": "^v12.37.0"
     },
     "autoload": {
         "psr-4": {
-            "Leandreaci\\Filterable\\": "src/"
+            "RbdevSys\\Filterable\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Leandreaci\\Tests\\": "tests/"
+            "RbdevSys\\Tests\\": "tests/"
         }
     },
-    "minimum-stability": "dev"
+    "require-dev": {
+        "pestphp/pest": "^v4.1.3",
+        "pestphp/pest-plugin-laravel": "^4.0"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
 }
