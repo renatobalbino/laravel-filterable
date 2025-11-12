@@ -2,7 +2,6 @@
     "name": "renatobalbino/laravel-filterable",
     "description": "Filter package to Laravel/Lumen",
     "type": "package",
-    "version": "v1.0.0",
     "license": "MIT",
     "require": {
         "php": ">=8.2",
