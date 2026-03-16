@@ -5,7 +5,7 @@ Filter model by query string
 Example: domain.com/route?id=1
 
 ## Install package
-composer require leandreaci/filterable *@dev
+composer require renatobalbino/filterable *@dev
 
 ## Using
 Create a file in your Laravel/Lumen project
@@ -14,16 +14,13 @@ Create a file in your Laravel/Lumen project
 ```php
 <?php
 
-
 namespace App;
 
-
 use Carbon\Carbon;
-use Leandreaci\Filterable\QueryFilter;
+use RbdevSys\Filterable\QueryFilter;
 
 class ExampleFilter extends QueryFilter
 {
-
     public function id($id)
     {
         return $this->builder->where('id', $id);
@@ -39,8 +36,6 @@ class ExampleFilter extends QueryFilter
             return $this->builder;
         }
     }
-    
-
 }
 
 ```
@@ -54,7 +49,7 @@ class ExampleFilter extends QueryFilter
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Leandreaci\Filterable\Filterable;
+use RbdevSys\Filterable\Filterable;
 
 class ExampleModel extends Model
 {
@@ -85,8 +80,7 @@ class TransactionController extends Controller
      */
     public function index(ExampleFilter $filter)
     {
-        return  ExampleModel::filter($filter)
-                               ->paginate(10);
+        return  ExampleModel::filter($filter)->paginate(10);
     }
 }
 ?>
